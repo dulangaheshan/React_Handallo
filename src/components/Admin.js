@@ -8,6 +8,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import Complaints from "./Complaints";
+import Offers from "./Offers";
 
 const drawerWidth = 240;
 
@@ -73,7 +75,10 @@ function ClippedDrawer(props) {
 
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography noWrap />
+        <Typography>
+          <Complaints />
+          <Offers />
+        </Typography>
       </main>
     </div>
   );

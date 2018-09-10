@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -28,23 +29,38 @@ class Login extends Component {
       body: JSON.stringify(this.state.data)
     })
       .then(function(response) {
-        // return response.json();
-        console.log(response);
+        return response.json();
+        //console.log(response);
       })
-      .then(response => {
-        if (response) {
-          window.alert("Invalid Email or Password");
-        } else {
+      .then(data => {
+        console.log(data);
+        if (data === true) {
           this.props.history.push("/Admin");
+        } else {
+          alert(" have been not logged");
         }
       });
   };
   render() {
     const { data } = this.state;
     return (
-      <div>
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          backgroundImage: `url(require("../Images/menu-3356827_1920.jpg"))`
+        }}
+      >
         <br />
-        <Card>
+        <Card
+          style={{
+            marginLeft: "38%",
+            marginRight: "38%",
+            marginTop: "10%",
+            paddingBottom: "5%",
+            paddingTop: "5%"
+          }}
+        >
           <br />
           <CardContent>
             <form onSubmit={e => this.onSubmit(e)}>
@@ -60,7 +76,7 @@ class Login extends Component {
                 value={data.email}
                 onChange={this.onChange}
               />
-              <br />
+              <br /> <br />
               <TextField
                 type="password"
                 id="pass_word"
@@ -69,6 +85,7 @@ class Login extends Component {
                 value={data.pass_word}
                 onChange={this.onChange}
               />
+              <br />
               <br />
               <Button type="submit" variant="contained" color="secondary">
                 LogIn
@@ -81,4 +98,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
